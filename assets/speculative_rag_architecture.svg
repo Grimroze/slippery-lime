@@ -1,0 +1,378 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 1880" width="100%" height="100%">
+  <defs>
+    <!-- Arrow Marker -->
+    <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#64748B" />
+    </marker>
+    <marker id="arrowBlue" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#3B82F6" />
+    </marker>
+    <marker id="arrowPurple" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#8B5CF6" />
+    </marker>
+    <marker id="arrowGreen" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#10B981" />
+    </marker>
+  </defs>
+
+  <style>
+    .title-text { font-family: 'Inter', system-ui, -apple-system, sans-serif; font-weight: 700; fill: #1E293B; }
+    .subtitle-text { font-family: 'Inter', system-ui, -apple-system, sans-serif; font-weight: 500; fill: #64748B; font-size: 11px; }
+    .phase-title { font-family: 'Inter', system-ui, -apple-system, sans-serif; font-weight: 700; font-size: 13px; fill: #0F172A; }
+    .latency-badge { font-family: 'Inter', system-ui, -apple-system, sans-serif; font-weight: 500; font-size: 11.5px; fill: #64748B; }
+    .node-title { font-family: 'Inter', system-ui, -apple-system, sans-serif; font-weight: 700; font-size: 13px; }
+    .node-sub { font-family: 'Inter', system-ui, -apple-system, sans-serif; font-weight: 400; font-size: 10.5px; }
+    .code-text { font-family: 'Courier New', monospace; font-size: 11px; font-weight: 600; }
+  </style>
+
+  <!-- Clean Off-White Background (Matches User's Clean Diagram) -->
+  <rect width="920" height="1880" fill="#F8FAFC" />
+
+  <!-- ==================== USER QUERY (TOP) ==================== -->
+  <g transform="translate(300, 25)">
+    <rect x="0" y="0" width="320" height="46" rx="23" fill="#FEF3C7" stroke="#F59E0B" stroke-width="1.3" />
+    <text x="160" y="28" text-anchor="middle" font-family="'Inter', sans-serif" font-size="14" font-weight="700" fill="#92400E" letter-spacing="0.5">
+      USER QUERY (Q)
+    </text>
+  </g>
+
+  <!-- Split lines from Query to Phase 1 -->
+  <path d="M 460 71 L 460 90 L 255 90 L 255 125" stroke="#94A3B8" stroke-width="1.5" fill="none" marker-end="url(#arrow)" />
+  <path d="M 460 71 L 460 90 L 665 90 L 665 125" stroke="#94A3B8" stroke-width="1.5" fill="none" marker-end="url(#arrow)" />
+
+  <!-- ==================== PHASE 1: HYBRID RETRIEVAL & FUSION ==================== -->
+  <g transform="translate(40, 100)">
+    <!-- Phase Outer Box -->
+    <rect x="0" y="0" width="840" height="235" rx="14" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.2" stroke-dasharray="5,5" />
+    <text x="20" y="22" class="phase-title">Phase 1 · Hybrid retrieval &amp; fusion</text>
+    <text x="820" y="22" text-anchor="end" class="latency-badge">~15–25 ms</text>
+
+    <!-- Dense Vector Search Node -->
+    <g transform="translate(45, 35)">
+      <rect x="0" y="0" width="340" height="58" rx="10" fill="#EFF6FF" stroke="#93C5FD" stroke-width="1.2" />
+      <text x="170" y="25" text-anchor="middle" class="node-title" fill="#1D4ED8">Dense Vector Search</text>
+      <text x="170" y="42" text-anchor="middle" class="node-sub" fill="#3B82F6">BGE / Qdrant HNSW · Top 15 semantic chunks</text>
+    </g>
+
+    <!-- Sparse BM25 Search Node -->
+    <g transform="translate(455, 35)">
+      <rect x="0" y="0" width="340" height="58" rx="10" fill="#EFF6FF" stroke="#93C5FD" stroke-width="1.2" />
+      <text x="170" y="25" text-anchor="middle" class="node-title" fill="#1D4ED8">Sparse BM25 Search</text>
+      <text x="170" y="42" text-anchor="middle" class="node-sub" fill="#3B82F6">Inverted index match · Top 15 exact keyword chunks</text>
+    </g>
+
+    <!-- Lines into RRF -->
+    <path d="M 215 93 L 215 110 L 420 110 L 420 120" stroke="#94A3B8" stroke-width="1.5" fill="none" />
+    <path d="M 625 93 L 625 110 L 420 110 L 420 120" stroke="#94A3B8" stroke-width="1.5" fill="none" marker-end="url(#arrow)" />
+
+    <!-- RRF Node -->
+    <g transform="translate(190, 122)">
+      <rect x="0" y="0" width="460" height="46" rx="10" fill="#DBEAFE" stroke="#60A5FA" stroke-width="1.2" />
+      <text x="230" y="22" text-anchor="middle" class="node-title" fill="#1E40AF">Reciprocal Rank Fusion (RRF)</text>
+      <text x="230" y="38" text-anchor="middle" class="code-text" fill="#2563EB">Score = 1/(60 + Rank_dense) + 1/(60 + Rank_bm25)</text>
+    </g>
+
+    <!-- Arrow down to Top 15 re-ranked -->
+    <path d="M 420 168 L 420 183" stroke="#94A3B8" stroke-width="1.5" marker-end="url(#arrow)" />
+
+    <!-- Top N Chunks Node (Updated to 15) -->
+    <g transform="translate(250, 185)">
+      <rect x="0" y="0" width="340" height="38" rx="19" fill="#EFF6FF" stroke="#93C5FD" stroke-width="1.2" />
+      <text x="170" y="24" text-anchor="middle" font-family="'Inter', sans-serif" font-size="12.5" font-weight="700" fill="#1D4ED8">
+        Top N = 15 Re-Ranked Ranked Chunks
+      </text>
+    </g>
+  </g>
+
+  <!-- Arrow down from Phase 1 to Phase 2 -->
+  <path d="M 460 335 L 460 365" stroke="#94A3B8" stroke-width="1.5" marker-end="url(#arrow)" />
+
+  <!-- ==================== PHASE 2: DIVERSITY PARTITIONING & MODULO ==================== -->
+  <g transform="translate(40, 365)">
+    <!-- Phase Outer Box -->
+    <rect x="0" y="0" width="840" height="325" rx="14" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.2" stroke-dasharray="5,5" />
+    <text x="20" y="22" class="phase-title">Phase 2 · Diversity partitioning &amp; balanced allocation</text>
+    <text x="820" y="22" text-anchor="end" class="latency-badge">&lt; 2 ms on CPU</text>
+
+    <!-- Dynamic Silhouette Evaluator Node -->
+    <g transform="translate(200, 32)">
+      <rect x="0" y="0" width="440" height="52" rx="10" fill="#F3E8FF" stroke="#C084FC" stroke-width="1.2" />
+      <text x="220" y="23" text-anchor="middle" class="node-title" fill="#7E22CE">
+        Dynamic Silhouette Evaluator (k ∈ {2, 3})
+      </text>
+      <text x="220" y="40" text-anchor="middle" class="node-sub" fill="#9333EA">
+        Evaluates cluster density · Automatically guards against retriever noise (k ≥ 4 capped)
+      </text>
+    </g>
+
+    <!-- Arrow down to Branching / Clusters -->
+    <path d="M 420 84 L 420 98" stroke="#94A3B8" stroke-width="1.5" marker-end="url(#arrow)" />
+
+    <!-- Clusters Display (Showing Adaptive k=2 vs k=3) -->
+    <g transform="translate(30, 100)">
+      <!-- Cluster 1 -->
+      <rect x="0" y="0" width="245" height="50" rx="8" fill="#FAF5FF" stroke="#D8B4FE" stroke-width="1.1" />
+      <text x="122" y="21" text-anchor="middle" class="node-title" font-size="12" fill="#6B21A8">Cluster 1: Topic A</text>
+      <text x="122" y="38" text-anchor="middle" class="node-sub" fill="#7E22CE">5 Chunks [A0, A1, A2, A3, A4]</text>
+
+      <!-- Cluster 2 -->
+      <rect x="265" y="0" width="245" height="50" rx="8" fill="#FAF5FF" stroke="#D8B4FE" stroke-width="1.1" />
+      <text x="387" y="21" text-anchor="middle" class="node-title" font-size="12" fill="#6B21A8">Cluster 2: Topic B</text>
+      <text x="387" y="38" text-anchor="middle" class="node-sub" fill="#7E22CE">5 Chunks [B0, B1, B2, B3, B4]</text>
+
+      <!-- Cluster 3 (Optional / Dynamic) -->
+      <rect x="530" y="0" width="250" height="50" rx="8" fill="#FAF5FF" stroke="#D8B4FE" stroke-width="1.1" stroke-dasharray="3,3" />
+      <text x="655" y="21" text-anchor="middle" class="node-title" font-size="12" fill="#6B21A8">Cluster 3: Topic C (if k = 3)</text>
+      <text x="655" y="38" text-anchor="middle" class="node-sub" fill="#7E22CE">5 Chunks [C0, C1, C2, C3, C4]</text>
+    </g>
+
+    <!-- Arrow down to Round Robin Allocation -->
+    <path d="M 420 152 L 420 166" stroke="#94A3B8" stroke-width="1.5" marker-end="url(#arrow)" />
+
+    <!-- Modulo Balanced Allocation Banner -->
+    <g transform="translate(140, 168)">
+      <rect x="0" y="0" width="560" height="52" rx="10" fill="#EDE9FE" stroke="#A78BFA" stroke-width="1.3" />
+      <text x="280" y="23" text-anchor="middle" class="node-title" fill="#5B21B6">
+        Balanced Modulo Round-Robin Allocation
+      </text>
+      <text x="280" y="41" text-anchor="middle" class="code-text" fill="#6D28D9">
+        Subset_i = [ A[i],  B[(m - 1 - i)],  C[(i + 2) % m] ]   (Rank-sum invariant)
+      </text>
+    </g>
+
+    <!-- Arrow down to Subsets Grid -->
+    <path d="M 420 220 L 420 234" stroke="#94A3B8" stroke-width="1.5" marker-end="url(#arrow)" />
+
+    <!-- 5 Subsets Display -->
+    <g transform="translate(30, 236)">
+      <!-- S1 -->
+      <rect x="0" y="0" width="145" height="66" rx="8" fill="#FAF5FF" stroke="#C084FC" stroke-width="1.2" />
+      <text x="72" y="20" text-anchor="middle" class="node-title" font-size="11.5" fill="#6B21A8">Subset δ1</text>
+      <text x="72" y="38" text-anchor="middle" class="code-text" font-size="10.5" fill="#1E293B">[A0, B4, C2]</text>
+      <text x="72" y="54" text-anchor="middle" font-family="'Inter', sans-serif" font-size="9" font-weight="600" fill="#059669">Rank Balanced ⚖️</text>
+
+      <!-- S2 -->
+      <rect x="158" y="0" width="145" height="66" rx="8" fill="#FAF5FF" stroke="#C084FC" stroke-width="1.2" />
+      <text x="230" y="20" text-anchor="middle" class="node-title" font-size="11.5" fill="#6B21A8">Subset δ2</text>
+      <text x="230" y="38" text-anchor="middle" class="code-text" font-size="10.5" fill="#1E293B">[A1, B3, C3]</text>
+      <text x="230" y="54" text-anchor="middle" font-family="'Inter', sans-serif" font-size="9" font-weight="600" fill="#059669">Rank Balanced ⚖️</text>
+
+      <!-- S3 -->
+      <rect x="316" y="0" width="145" height="66" rx="8" fill="#FAF5FF" stroke="#C084FC" stroke-width="1.2" />
+      <text x="388" y="20" text-anchor="middle" class="node-title" font-size="11.5" fill="#6B21A8">Subset δ3</text>
+      <text x="388" y="38" text-anchor="middle" class="code-text" font-size="10.5" fill="#1E293B">[A2, B2, C4]</text>
+      <text x="388" y="54" text-anchor="middle" font-family="'Inter', sans-serif" font-size="9" font-weight="600" fill="#059669">Rank Balanced ⚖️</text>
+
+      <!-- S4 -->
+      <rect x="474" y="0" width="145" height="66" rx="8" fill="#FAF5FF" stroke="#C084FC" stroke-width="1.2" />
+      <text x="546" y="20" text-anchor="middle" class="node-title" font-size="11.5" fill="#6B21A8">Subset δ4</text>
+      <text x="546" y="38" text-anchor="middle" class="code-text" font-size="10.5" fill="#1E293B">[A3, B1, C0]</text>
+      <text x="546" y="54" text-anchor="middle" font-family="'Inter', sans-serif" font-size="9" font-weight="600" fill="#059669">Rank Balanced ⚖️</text>
+
+      <!-- S5 -->
+      <rect x="632" y="0" width="148" height="66" rx="8" fill="#FAF5FF" stroke="#C084FC" stroke-width="1.2" />
+      <text x="706" y="20" text-anchor="middle" class="node-title" font-size="11.5" fill="#6B21A8">Subset δ5</text>
+      <text x="706" y="38" text-anchor="middle" class="code-text" font-size="10.5" fill="#1E293B">[A4, B0, C1]</text>
+      <text x="706" y="54" text-anchor="middle" font-family="'Inter', sans-serif" font-size="9" font-weight="600" fill="#059669">Rank Balanced ⚖️</text>
+    </g>
+  </g>
+
+  <!-- Arrow down from Phase 2 to Phase 3 -->
+  <path d="M 460 690 L 460 718" stroke="#94A3B8" stroke-width="1.5" marker-end="url(#arrow)" />
+
+  <!-- ==================== PHASE 3: PARALLEL DRAFTING ==================== -->
+  <g transform="translate(40, 720)">
+    <!-- Phase Outer Box -->
+    <rect x="0" y="0" width="840" height="230" rx="14" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.2" stroke-dasharray="5,5" />
+    <text x="20" y="22" class="phase-title">Phase 3 · Parallel drafting</text>
+    <text x="820" y="22" text-anchor="end" class="latency-badge">~250–350 ms (AsyncIO / vLLM)</text>
+
+    <!-- Specialist Drafter Model Node -->
+    <g transform="translate(170, 35)">
+      <rect x="0" y="0" width="500" height="52" rx="10" fill="#D1FAE5" stroke="#34D399" stroke-width="1.2" />
+      <text x="250" y="22" text-anchor="middle" class="node-title" fill="#065F46">
+        Specialist Drafter: 3B model (Llama-3.2 / Qwen)
+      </text>
+      <text x="250" y="40" text-anchor="middle" font-family="'Inter', sans-serif" font-size="11" font-weight="600" fill="#047857">
+        Prompt Rule: Generate Rationale (β) FIRST, then Final Answer (α)
+      </text>
+    </g>
+
+    <!-- Branch lines to 5 drafts -->
+    <path d="M 420 87 L 420 102" stroke="#94A3B8" stroke-width="1.5" />
+    <path d="M 102 102 L 738 102" stroke="#94A3B8" stroke-width="1.5" />
+    
+    <path d="M 102 102 L 102 118" stroke="#94A3B8" stroke-width="1.5" marker-end="url(#arrow)" />
+    <path d="M 261 102 L 261 118" stroke="#94A3B8" stroke-width="1.5" marker-end="url(#arrow)" />
+    <path d="M 420 102 L 420 118" stroke="#94A3B8" stroke-width="1.5" marker-end="url(#arrow)" />
+    <path d="M 579 102 L 579 118" stroke="#94A3B8" stroke-width="1.5" marker-end="url(#arrow)" />
+    <path d="M 738 102 L 738 118" stroke="#94A3B8" stroke-width="1.5" marker-end="url(#arrow)" />
+
+    <!-- 5 Draft Output Nodes -->
+    <g transform="translate(30, 120)">
+      <!-- Draft 1 -->
+      <rect x="0" y="0" width="145" height="85" rx="8" fill="#ECFDF5" stroke="#6EE7B7" stroke-width="1.2" />
+      <text x="72" y="22" text-anchor="middle" class="node-title" font-size="12" fill="#065F46">Draft 1</text>
+      <text x="72" y="42" text-anchor="middle" class="code-text" font-size="11" fill="#047857">(α1, β1)</text>
+      <text x="72" y="62" text-anchor="middle" font-family="'Inter', sans-serif" font-size="9.5" fill="#64748B">ρ_Draft = 0.71</text>
+      <text x="72" y="76" text-anchor="middle" font-family="'Inter', sans-serif" font-size="9" font-weight="700" fill="#059669">Film Perspective</text>
+
+      <!-- Draft 2 -->
+      <rect x="158" y="0" width="145" height="85" rx="8" fill="#ECFDF5" stroke="#6EE7B7" stroke-width="1.2" />
+      <text x="230" y="22" text-anchor="middle" class="node-title" font-size="12" fill="#065F46">Draft 2</text>
+      <text x="230" y="42" text-anchor="middle" class="code-text" font-size="11" fill="#047857">(α2, β2)</text>
+      <text x="230" y="62" text-anchor="middle" font-family="'Inter', sans-serif" font-size="9.5" fill="#64748B">ρ_Draft = 0.68</text>
+      <text x="230" y="76" text-anchor="middle" font-family="'Inter', sans-serif" font-size="9" font-weight="700" fill="#0284C7">Cast/Award Detail</text>
+
+      <!-- Draft 3 -->
+      <rect x="316" y="0" width="145" height="85" rx="8" fill="#ECFDF5" stroke="#6EE7B7" stroke-width="1.2" />
+      <text x="388" y="22" text-anchor="middle" class="node-title" font-size="12" fill="#065F46">Draft 3</text>
+      <text x="388" y="42" text-anchor="middle" class="code-text" font-size="11" fill="#047857">(α3, β3)</text>
+      <text x="388" y="62" text-anchor="middle" font-family="'Inter', sans-serif" font-size="9.5" fill="#64748B">ρ_Draft = 0.65</text>
+      <text x="388" y="76" text-anchor="middle" font-family="'Inter', sans-serif" font-size="9" font-weight="700" fill="#64748B">Stage Perspective</text>
+
+      <!-- Draft 4 -->
+      <rect x="474" y="0" width="145" height="85" rx="8" fill="#ECFDF5" stroke="#6EE7B7" stroke-width="1.2" />
+      <text x="546" y="22" text-anchor="middle" class="node-title" font-size="12" fill="#065F46">Draft 4</text>
+      <text x="546" y="42" text-anchor="middle" class="code-text" font-size="11" fill="#047857">(α4, β4)</text>
+      <text x="546" y="62" text-anchor="middle" font-family="'Inter', sans-serif" font-size="9.5" fill="#64748B">ρ_Draft = 0.60</text>
+      <text x="546" y="76" text-anchor="middle" font-family="'Inter', sans-serif" font-size="9" font-weight="700" fill="#64748B">Tour Details</text>
+
+      <!-- Draft 5 -->
+      <rect x="632" y="0" width="148" height="85" rx="8" fill="#ECFDF5" stroke="#6EE7B7" stroke-width="1.2" />
+      <text x="706" y="22" text-anchor="middle" class="node-title" font-size="12" fill="#065F46">Draft 5</text>
+      <text x="706" y="42" text-anchor="middle" class="code-text" font-size="11" fill="#047857">(α5, β5)</text>
+      <text x="706" y="62" text-anchor="middle" font-family="'Inter', sans-serif" font-size="9.5" fill="#64748B">ρ_Draft = 0.62</text>
+      <text x="706" y="76" text-anchor="middle" font-family="'Inter', sans-serif" font-size="9" font-weight="700" fill="#64748B">Music Soundtrack</text>
+    </g>
+  </g>
+
+  <!-- Arrow down from Phase 3 to Phase 4 -->
+  <path d="M 460 950 L 460 978" stroke="#94A3B8" stroke-width="1.5" marker-end="url(#arrow)" />
+
+  <!-- ==================== PHASE 4: VERIFICATION & SCORING ==================== -->
+  <g transform="translate(40, 980)">
+    <!-- Phase Outer Box -->
+    <rect x="0" y="0" width="840" height="280" rx="14" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.2" stroke-dasharray="5,5" />
+    <text x="20" y="22" class="phase-title">Phase 4 · Verification &amp; scoring</text>
+    <text x="820" y="22" text-anchor="end" class="latency-badge">~150–200 ms</text>
+
+    <!-- Generalist Verifier Model Node -->
+    <g transform="translate(170, 35)">
+      <rect x="0" y="0" width="500" height="56" rx="10" fill="#FEF3C7" stroke="#FBBF24" stroke-width="1.2" />
+      <text x="250" y="23" text-anchor="middle" class="node-title" fill="#B45309">
+        Generalist Verifier: 70B / GPT-4o
+      </text>
+      <text x="250" y="41" text-anchor="middle" font-family="'Inter', sans-serif" font-size="11" font-weight="700" fill="#D97706">
+        Raw chunks NOT read (95% token savings!) · Input: Query Q + Candidate (α_j, β_j)
+      </text>
+    </g>
+
+    <!-- Split Lines to the two scores -->
+    <path d="M 420 91 L 420 108" stroke="#94A3B8" stroke-width="1.5" />
+    <path d="M 235 108 L 605 108" stroke="#94A3B8" stroke-width="1.5" />
+    <path d="M 235 108 L 235 120" stroke="#94A3B8" stroke-width="1.5" marker-end="url(#arrow)" />
+    <path d="M 605 108 L 605 120" stroke="#94A3B8" stroke-width="1.5" marker-end="url(#arrow)" />
+
+    <!-- Self-Consistency Node -->
+    <g transform="translate(65, 122)">
+      <rect x="0" y="0" width="340" height="60" rx="10" fill="#FFF7ED" stroke="#FDBA74" stroke-width="1.2" />
+      <text x="170" y="23" text-anchor="middle" class="node-title" fill="#C2410C">Self-Consistency Score</text>
+      <text x="170" y="40" text-anchor="middle" class="code-text" fill="#9A3412">P(α, β | Q)</text>
+      <text x="170" y="53" text-anchor="middle" class="node-sub" fill="#7C2D12">Log-likelihood of draft under query context</text>
+    </g>
+
+    <!-- Self-Reflection Node -->
+    <g transform="translate(435, 122)">
+      <rect x="0" y="0" width="340" height="60" rx="10" fill="#FFF7ED" stroke="#FDBA74" stroke-width="1.2" />
+      <text x="170" y="23" text-anchor="middle" class="node-title" fill="#C2410C">Self-Reflection Score</text>
+      <text x="170" y="40" text-anchor="middle" class="code-text" fill="#9A3412">P("Yes" | Q, α, β, R)</text>
+      <text x="170" y="53" text-anchor="middle" class="node-sub" fill="#7C2D12">R: "Does the rationale support the answer?"</text>
+    </g>
+
+    <!-- Lines into Composite Score -->
+    <path d="M 235 182 L 235 198 L 420 198" stroke="#94A3B8" stroke-width="1.5" fill="none" />
+    <path d="M 605 182 L 605 198 L 420 198" stroke="#94A3B8" stroke-width="1.5" fill="none" marker-end="url(#arrow)" />
+
+    <!-- Composite Confidence Score Node -->
+    <g transform="translate(160, 205)">
+      <rect x="0" y="0" width="520" height="55" rx="10" fill="#FFEDD5" stroke="#FB923C" stroke-width="1.3" />
+      <text x="260" y="24" text-anchor="middle" class="node-title" fill="#9A3412">
+        Composite Confidence Score
+      </text>
+      <text x="260" y="43" text-anchor="middle" class="code-text" fill="#C2410C">
+        Score_j = ρ_Draft,j × ρ_Self-contain,j × ρ_Self-reflect,j
+      </text>
+    </g>
+  </g>
+
+  <!-- Arrow down from Phase 4 to Phase 5 -->
+  <path d="M 460 1260 L 460 1290" stroke="#94A3B8" stroke-width="1.5" marker-end="url(#arrow)" />
+
+  <!-- ==================== PHASE 5: ARBITRATION, GATING & RETURN ==================== -->
+  <g transform="translate(40, 1292)">
+    <!-- Phase Outer Box -->
+    <rect x="0" y="0" width="840" height="430" rx="14" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.2" stroke-dasharray="5,5" />
+    <text x="20" y="22" class="phase-title">Phase 5 · Arbitration &amp; adaptive fusion</text>
+    <text x="820" y="22" text-anchor="end" class="latency-badge">&lt; 15 ms (or ~120 ms if synthesis)</text>
+
+    <!-- Adaptive Gating Diamond/Box -->
+    <g transform="translate(200, 35)">
+      <rect x="0" y="0" width="440" height="52" rx="10" fill="#FEF2F2" stroke="#F87171" stroke-width="1.3" />
+      <text x="220" y="22" text-anchor="middle" class="node-title" fill="#991B1B">
+        Adaptive Fusion Gating Mechanism
+      </text>
+      <text x="220" y="40" text-anchor="middle" class="code-text" fill="#B91C1C">
+        Is Score Margin (ρ_top1 - ρ_top2) &lt; 0.15 AND ρ_top2 &gt; 0.65?
+      </text>
+    </g>
+
+    <!-- Two Decision Branches -->
+    <path d="M 310 87 L 310 110 L 210 110 L 210 125" stroke="#94A3B8" stroke-width="1.5" fill="none" marker-end="url(#arrow)" />
+    <path d="M 530 87 L 530 110 L 630 110 L 630 125" stroke="#94A3B8" stroke-width="1.5" fill="none" marker-end="url(#arrow)" />
+
+    <!-- Branch A: NO (Decisive Winner) -->
+    <g transform="translate(50, 128)">
+      <rect x="0" y="0" width="320" height="75" rx="10" fill="#F0FDF4" stroke="#86EFAC" stroke-width="1.2" />
+      <text x="160" y="23" text-anchor="middle" font-family="'Inter', sans-serif" font-size="11" font-weight="700" fill="#166534">
+        CASE A: DECISIVE WINNER (NO)
+      </text>
+      <text x="160" y="45" text-anchor="middle" class="code-text" font-size="12" fill="#15803D">
+        Winner = argmax_j (Score_j)
+      </text>
+      <text x="160" y="63" text-anchor="middle" font-family="'Inter', sans-serif" font-size="10.5" fill="#166534">
+        Zero extra tokens · Returns Top-1 Draft (α1)
+      </text>
+    </g>
+
+    <!-- Branch B: YES (Complementary Synthesis) -->
+    <g transform="translate(470, 128)">
+      <rect x="0" y="0" width="320" height="75" rx="10" fill="#EFF6FF" stroke="#93C5FD" stroke-width="1.2" />
+      <text x="160" y="23" text-anchor="middle" font-family="'Inter', sans-serif" font-size="11" font-weight="700" fill="#1E40AF">
+        CASE B: CLOSE MARGIN / MULTI-FACET (YES)
+      </text>
+      <text x="160" y="45" text-anchor="middle" class="code-text" font-size="12" fill="#2563EB">
+        Verifier.synthesize(α_top1, α_top2)
+      </text>
+      <text x="160" y="63" text-anchor="middle" font-family="'Inter', sans-serif" font-size="10.5" fill="#1E40AF">
+        Merges complementary multi-entity insights
+      </text>
+    </g>
+
+    <!-- Converge lines into Final Response Box -->
+    <path d="M 210 203 L 210 230 L 420 230" stroke="#94A3B8" stroke-width="1.5" fill="none" />
+    <path d="M 630 203 L 630 230 L 420 230" stroke="#94A3B8" stroke-width="1.5" fill="none" marker-end="url(#arrow)" />
+    <path d="M 420 230 L 420 248" stroke="#94A3B8" stroke-width="1.5" marker-end="url(#arrow)" />
+
+    <!-- Final Output Banner -->
+    <g transform="translate(100, 252)">
+      <rect x="0" y="0" width="640" height="65" rx="14" fill="#DCFCE7" stroke="#22C55E" stroke-width="1.5" />
+      <text x="320" y="28" text-anchor="middle" font-family="'Inter', sans-serif" font-size="15" font-weight="800" fill="#15803D" letter-spacing="0.5">
+        FINAL RESPONSE TO USER
+      </text>
+      <text x="320" y="48" text-anchor="middle" font-family="'Inter', sans-serif" font-size="11" font-weight="600" fill="#166534">
+        + Telemetry Metadata: End-to-End Latency (~470 ms), Token Savings (95%), Winning Draft ID
+      </text>
+    </g>
+  </g>
+</svg>
