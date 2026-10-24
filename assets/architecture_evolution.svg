@@ -1,0 +1,209 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 680" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0F172A" />
+      <stop offset="100%" stop-color="#020617" />
+    </linearGradient>
+
+    <linearGradient id="cardGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1E293B" stop-opacity="0.9" />
+      <stop offset="100%" stop-color="#0F172A" stop-opacity="0.9" />
+    </linearGradient>
+
+    <!-- Glowing Pill Gradients -->
+    <linearGradient id="gradV1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#EF4444" />
+      <stop offset="100%" stop-color="#B91C1C" />
+    </linearGradient>
+    <linearGradient id="gradV2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F59E0B" />
+      <stop offset="100%" stop-color="#D97706" />
+    </linearGradient>
+    <linearGradient id="gradV3" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#3B82F6" />
+      <stop offset="100%" stop-color="#1D4ED8" />
+    </linearGradient>
+    <linearGradient id="gradV4" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#8B5CF6" />
+      <stop offset="100%" stop-color="#6D28D9" />
+    </linearGradient>
+    <linearGradient id="gradV5" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#10B981" />
+      <stop offset="100%" stop-color="#059669" />
+    </linearGradient>
+
+    <filter id="cardShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#000000" flood-opacity="0.5" />
+    </filter>
+
+    <marker id="arrowHead" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#38BDF8" />
+    </marker>
+  </defs>
+
+  <!-- Deep Slate Background -->
+  <rect width="1200" height="680" fill="url(#bgGrad)" rx="16" />
+
+  <!-- Header Banner -->
+  <g transform="translate(50, 35)">
+    <rect x="0" y="0" width="1100" height="65" rx="10" fill="#1E293B" stroke="#334155" stroke-width="1.2" />
+    <text x="30" y="32" font-family="'Inter', system-ui, sans-serif" font-size="20" font-weight="800" fill="#F8FAFC" letter-spacing="0.5">
+      SYSTEM ARCHITECTURE EVOLUTION JOURNEY
+    </text>
+    <text x="30" y="52" font-family="'Inter', system-ui, sans-serif" font-size="12" font-weight="500" fill="#94A3B8">
+      Chronological engineering upgrades: From academic paper limitations to enterprise-grade production reliability.
+    </text>
+    <rect x="960" y="16" width="115" height="32" rx="16" fill="#065F46" stroke="#34D399" stroke-width="1.2" />
+    <text x="1017" y="37" text-anchor="middle" font-family="'Inter', sans-serif" font-size="11.5" font-weight="700" fill="#34D399">5 Iterations</text>
+  </g>
+
+  <!-- Timeline Connecting Track -->
+  <path d="M 155 240 L 1045 240" stroke="#334155" stroke-width="3" stroke-dasharray="6,6" />
+  
+  <!-- Step 1: v1.0 Paper Baseline -->
+  <g transform="translate(50, 140)">
+    <rect x="0" y="0" width="200" height="490" rx="12" fill="url(#cardGrad)" stroke="#EF4444" stroke-width="1.5" filter="url(#cardShadow)" />
+    <!-- Step Badge -->
+    <rect x="20" y="18" width="90" height="26" rx="6" fill="url(#gradV1)" />
+    <text x="65" y="35" text-anchor="middle" font-family="'Inter', sans-serif" font-size="12" font-weight="800" fill="#FFFFFF">v1.0 Paper</text>
+    <text x="20" y="72" font-family="'Inter', sans-serif" font-size="14" font-weight="700" fill="#F8FAFC">Raw Baseline</text>
+    <text x="20" y="90" font-family="'Inter', sans-serif" font-size="11" fill="#94A3B8">ICLR 2025 Original</text>
+
+    <line x1="20" y1="105" x2="180" y2="105" stroke="#334155" stroke-width="1" />
+
+    <text x="20" y="130" font-family="'Inter', sans-serif" font-size="11.5" font-weight="700" fill="#FCA5A5">Design Features:</text>
+    <text x="20" y="152" font-family="'Inter', sans-serif" font-size="10.5" fill="#E2E8F0">• Dense-only retrieval</text>
+    <text x="20" y="172" font-family="'Inter', sans-serif" font-size="10.5" fill="#E2E8F0">• Stochastic random.sample</text>
+    <text x="20" y="192" font-family="'Inter', sans-serif" font-size="10.5" fill="#E2E8F0">• Fixed k clusters</text>
+    <text x="20" y="212" font-family="'Inter', sans-serif" font-size="10.5" fill="#E2E8F0">• Pure argmax selection</text>
+
+    <!-- Critical Flaw Box -->
+    <rect x="15" y="240" width="170" height="230" rx="8" fill="#450A0A" stroke="#DC2626" stroke-width="1" />
+    <text x="25" y="265" font-family="'Inter', sans-serif" font-size="11" font-weight="800" fill="#F87171">⚠️ CRITICAL FLAWS:</text>
+    <text x="25" y="295" font-family="'Inter', sans-serif" font-size="10" fill="#FECACA">• Chunk Omission Risk:</text>
+    <text x="25" y="312" font-family="'Inter', sans-serif" font-size="9.5" fill="#FCA5A5">Random sampling can miss</text>
+    <text x="25" y="327" font-family="'Inter', sans-serif" font-size="9.5" fill="#FCA5A5">the golden answer chunk.</text>
+    <text x="25" y="355" font-family="'Inter', sans-serif" font-size="10" fill="#FECACA">• Keyword Blindness:</text>
+    <text x="25" y="372" font-family="'Inter', sans-serif" font-size="9.5" fill="#FCA5A5">Vector search drops exact</text>
+    <text x="25" y="387" font-family="'Inter', sans-serif" font-size="9.5" fill="#FCA5A5">model codes &amp; dates.</text>
+    <text x="25" y="415" font-family="'Inter', sans-serif" font-size="10" fill="#FECACA">• Raw Output:</text>
+    <text x="25" y="432" font-family="'Inter', sans-serif" font-size="9.5" fill="#FCA5A5">Unformatted terse text.</text>
+  </g>
+
+  <!-- Step 2: v2.0 Deterministic Coverage -->
+  <g transform="translate(275, 140)">
+    <rect x="0" y="0" width="200" height="490" rx="12" fill="url(#cardGrad)" stroke="#F59E0B" stroke-width="1.5" filter="url(#cardShadow)" />
+    <rect x="20" y="18" width="90" height="26" rx="6" fill="url(#gradV2)" />
+    <text x="65" y="35" text-anchor="middle" font-family="'Inter', sans-serif" font-size="12" font-weight="800" fill="#FFFFFF">v2.0 Math</text>
+    <text x="20" y="72" font-family="'Inter', sans-serif" font-size="14" font-weight="700" fill="#F8FAFC">100% Coverage</text>
+    <text x="20" y="90" font-family="'Inter', sans-serif" font-size="11" fill="#94A3B8">Slot-Math Allocation</text>
+
+    <line x1="20" y1="105" x2="180" y2="105" stroke="#334155" stroke-width="1" />
+
+    <text x="20" y="130" font-family="'Inter', sans-serif" font-size="11.5" font-weight="700" fill="#FCD34D">Core Innovation:</text>
+    <text x="20" y="152" font-family="'Inter', sans-serif" font-size="10.5" fill="#E2E8F0">• Eliminated random choice</text>
+    <text x="20" y="172" font-family="'Inter', sans-serif" font-size="10.5" fill="#E2E8F0">• Slots = m × k = 10</text>
+    <text x="20" y="192" font-family="'Inter', sans-serif" font-size="10.5" fill="#E2E8F0">• Top 10 chunks mapped</text>
+    <text x="20" y="212" font-family="'Inter', sans-serif" font-size="10.5" fill="#E2E8F0">• 100% chunk recall</text>
+
+    <!-- Tradeoff Box -->
+    <rect x="15" y="240" width="170" height="230" rx="8" fill="#451A03" stroke="#D97706" stroke-width="1" />
+    <text x="25" y="265" font-family="'Inter', sans-serif" font-size="11" font-weight="800" fill="#FBBF24">⚡ GAIN &amp; NEXT HURDLE:</text>
+    <text x="25" y="295" font-family="'Inter', sans-serif" font-size="10" fill="#FEF3C7">✓ Zero Dropped Chunks:</text>
+    <text x="25" y="312" font-family="'Inter', sans-serif" font-size="9.5" fill="#FDE68A">All 10 documents used.</text>
+    <text x="25" y="340" font-family="'Inter', sans-serif" font-size="10" fill="#F87171">⚠️ New Bottleneck:</text>
+    <text x="25" y="357" font-family="'Inter', sans-serif" font-size="9.5" fill="#FCA5A5">Naive tier-sorting creates</text>
+    <text x="25" y="372" font-family="'Inter', sans-serif" font-size="9.5" fill="#FCA5A5">"Super-Draft" (Best+Best)</text>
+    <text x="25" y="387" font-family="'Inter', sans-serif" font-size="9.5" fill="#FCA5A5">vs "Weak-Draft" (Worst+Worst)</text>
+    <text x="25" y="415" font-family="'Inter', sans-serif" font-size="9.5" fill="#FDE68A">Draft 5 becomes a waste</text>
+    <text x="25" y="430" font-family="'Inter', sans-serif" font-size="9.5" fill="#FDE68A">of compute resources.</text>
+  </g>
+
+  <!-- Step 3: v3.0 Hybrid Search -->
+  <g transform="translate(500, 140)">
+    <rect x="0" y="0" width="200" height="490" rx="12" fill="url(#cardGrad)" stroke="#3B82F6" stroke-width="1.5" filter="url(#cardShadow)" />
+    <rect x="20" y="18" width="90" height="26" rx="6" fill="url(#gradV3)" />
+    <text x="65" y="35" text-anchor="middle" font-family="'Inter', sans-serif" font-size="12" font-weight="800" fill="#FFFFFF">v3.0 RRF</text>
+    <text x="20" y="72" font-family="'Inter', sans-serif" font-size="14" font-weight="700" fill="#F8FAFC">Hybrid Retrieval</text>
+    <text x="20" y="90" font-family="'Inter', sans-serif" font-size="11" fill="#94A3B8">Dense + Sparse BM25</text>
+
+    <line x1="20" y1="105" x2="180" y2="105" stroke="#334155" stroke-width="1" />
+
+    <text x="20" y="130" font-family="'Inter', sans-serif" font-size="11.5" font-weight="700" fill="#93C5FD">Core Innovation:</text>
+    <text x="20" y="152" font-family="'Inter', sans-serif" font-size="10.5" fill="#E2E8F0">• Dense (HNSW) semantic</text>
+    <text x="20" y="172" font-family="'Inter', sans-serif" font-size="10.5" fill="#E2E8F0">• Sparse BM25 keyword</text>
+    <text x="20" y="192" font-family="'Inter', sans-serif" font-size="10.5" fill="#E2E8F0">• Reciprocal Rank Fusion</text>
+    <text x="20" y="212" font-family="'Inter', sans-serif" font-size="10.5" fill="#E2E8F0">• Scale-invariant scoring</text>
+
+    <!-- Tradeoff Box -->
+    <rect x="15" y="240" width="170" height="230" rx="8" fill="#172554" stroke="#2563EB" stroke-width="1" />
+    <text x="25" y="265" font-family="'Inter', sans-serif" font-size="11" font-weight="800" fill="#60A5FA">⚡ GAIN &amp; NEXT HURDLE:</text>
+    <text x="25" y="295" font-family="'Inter', sans-serif" font-size="10" fill="#DBEAFE">✓ Natural Topic Split:</text>
+    <text x="25" y="312" font-family="'Inter', sans-serif" font-size="9.5" fill="#BFDBFE">K-Means puts BM25 facts</text>
+    <text x="25" y="327" font-family="'Inter', sans-serif" font-size="9.5" fill="#BFDBFE">in C1, context in C2!</text>
+    <text x="25" y="355" font-family="'Inter', sans-serif" font-size="10" fill="#F87171">⚠️ New Bottleneck:</text>
+    <text x="25" y="372" font-family="'Inter', sans-serif" font-size="9.5" fill="#FCA5A5">What if query needs 3</text>
+    <text x="25" y="387" font-family="'Inter', sans-serif" font-size="9.5" fill="#FCA5A5">clusters? Hardcoded k=2</text>
+    <text x="25" y="402" font-family="'Inter', sans-serif" font-size="9.5" fill="#FCA5A5">struggles on multi-hop.</text>
+  </g>
+
+  <!-- Step 4: v4.0 Inverted Modulo -->
+  <g transform="translate(725, 140)">
+    <rect x="0" y="0" width="200" height="490" rx="12" fill="url(#cardGrad)" stroke="#8B5CF6" stroke-width="1.5" filter="url(#cardShadow)" />
+    <rect x="20" y="18" width="90" height="26" rx="6" fill="url(#gradV4)" />
+    <text x="65" y="35" text-anchor="middle" font-family="'Inter', sans-serif" font-size="12" font-weight="800" fill="#FFFFFF">v4.0 Modulo</text>
+    <text x="20" y="72" font-family="'Inter', sans-serif" font-size="14" font-weight="700" fill="#F8FAFC">Balanced Pairing</text>
+    <text x="20" y="90" font-family="'Inter', sans-serif" font-size="11" fill="#94A3B8">Rank-Sum Invariant</text>
+
+    <line x1="20" y1="105" x2="180" y2="105" stroke="#334155" stroke-width="1" />
+
+    <text x="20" y="130" font-family="'Inter', sans-serif" font-size="11.5" font-weight="700" fill="#C4B5FD">Core Innovation:</text>
+    <text x="20" y="152" font-family="'Inter', sans-serif" font-size="10.5" fill="#E2E8F0">• Inverted snake indexing</text>
+    <text x="20" y="172" font-family="'Inter', sans-serif" font-size="10.5" fill="#E2E8F0">• A[i] + B[m - 1 - i]</text>
+    <text x="20" y="192" font-family="'Inter', sans-serif" font-size="10.5" fill="#E2E8F0">• Rank sum = 6 across all</text>
+    <text x="20" y="212" font-family="'Inter', sans-serif" font-size="10.5" fill="#E2E8F0">• Competitive drafting</text>
+
+    <!-- Tradeoff Box -->
+    <rect x="15" y="240" width="170" height="230" rx="8" fill="#2E1065" stroke="#7C3AED" stroke-width="1" />
+    <text x="25" y="265" font-family="'Inter', sans-serif" font-size="11" font-weight="800" fill="#A78BFA">⚡ GAIN &amp; NEXT HURDLE:</text>
+    <text x="25" y="295" font-family="'Inter', sans-serif" font-size="10" fill="#EDE9FE">✓ Equalized Quality:</text>
+    <text x="25" y="312" font-family="'Inter', sans-serif" font-size="9.5" fill="#DDD6FE">Every draft gets 1 Top-tier</text>
+    <text x="25" y="327" font-family="'Inter', sans-serif" font-size="9.5" fill="#DDD6FE">anchor chunk!</text>
+    <text x="25" y="355" font-family="'Inter', sans-serif" font-size="10" fill="#F87171">⚠️ Missing Link:</text>
+    <text x="25" y="372" font-family="'Inter', sans-serif" font-size="9.5" fill="#FCA5A5">Argmax omits complementary</text>
+    <text x="25" y="387" font-family="'Inter', sans-serif" font-size="9.5" fill="#FCA5A5">drafts on multi-entity queries.</text>
+  </g>
+
+  <!-- Step 5: v5.0 Masterpiece -->
+  <g transform="translate(950, 140)">
+    <rect x="0" y="0" width="200" height="490" rx="12" fill="url(#cardGrad)" stroke="#10B981" stroke-width="2" filter="url(#cardShadow)" />
+    <rect x="20" y="18" width="105" height="26" rx="6" fill="url(#gradV5)" />
+    <text x="72" y="35" text-anchor="middle" font-family="'Inter', sans-serif" font-size="12" font-weight="800" fill="#FFFFFF">v5.0 Master</text>
+    <text x="20" y="72" font-family="'Inter', sans-serif" font-size="14" font-weight="700" fill="#34D399">Production Engine</text>
+    <text x="20" y="90" font-family="'Inter', sans-serif" font-size="11" fill="#A7F3D0">Auto-K &amp; Adaptive Gate</text>
+
+    <line x1="20" y1="105" x2="180" y2="105" stroke="#334155" stroke-width="1" />
+
+    <text x="20" y="130" font-family="'Inter', sans-serif" font-size="11.5" font-weight="700" fill="#6EE7B7">Complete Pipeline:</text>
+    <text x="20" y="152" font-family="'Inter', sans-serif" font-size="10.5" fill="#E2E8F0">• Silhouette (k ∈ {2, 3})</text>
+    <text x="20" y="172" font-family="'Inter', sans-serif" font-size="10.5" fill="#E2E8F0">• 3B Async Drafter (β → α)</text>
+    <text x="20" y="192" font-family="'Inter', sans-serif" font-size="10.5" fill="#E2E8F0">• 8B/70B Verifier (< 150ms)</text>
+    <text x="20" y="212" font-family="'Inter', sans-serif" font-size="10.5" fill="#E2E8F0">• Adaptive Fusion Gating</text>
+
+    <!-- Success Box -->
+    <rect x="15" y="240" width="170" height="230" rx="8" fill="#064E3B" stroke="#059669" stroke-width="1" />
+    <text x="25" y="265" font-family="'Inter', sans-serif" font-size="11" font-weight="800" fill="#34D399">🏆 PRODUCTION VICTORY:</text>
+    <text x="25" y="295" font-family="'Inter', sans-serif" font-size="10" fill="#D1FAE5">• 50% Faster Latency</text>
+    <text x="25" y="315" font-family="'Inter', sans-serif" font-size="10" fill="#D1FAE5">• 95% Token Savings</text>
+    <text x="25" y="335" font-family="'Inter', sans-serif" font-size="10" fill="#D1FAE5">• 100% Chunk Coverage</text>
+    <text x="25" y="355" font-family="'Inter', sans-serif" font-size="10" fill="#D1FAE5">• Fluent Final Output</text>
+    <text x="25" y="375" font-family="'Inter', sans-serif" font-size="10" fill="#D1FAE5">• Sub-second Response</text>
+    <text x="25" y="415" font-family="'Inter', sans-serif" font-size="10.5" font-weight="700" fill="#FBBF24">★ ENTERPRISE READY</text>
+  </g>
+
+  <!-- Connective Arrows -->
+  <path d="M 252 240 L 272 240" stroke="#38BDF8" stroke-width="2" marker-end="url(#arrowHead)" />
+  <path d="M 477 240 L 497 240" stroke="#38BDF8" stroke-width="2" marker-end="url(#arrowHead)" />
+  <path d="M 702 240 L 722 240" stroke="#38BDF8" stroke-width="2" marker-end="url(#arrowHead)" />
+  <path d="M 927 240 L 947 240" stroke="#38BDF8" stroke-width="2" marker-end="url(#arrowHead)" />
+</svg>

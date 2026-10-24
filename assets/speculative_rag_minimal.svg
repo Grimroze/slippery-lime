@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1520" width="900" height="1520">
+  <defs>
+    <marker id="arr5" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M2 1L8 5L2 9" fill="none" stroke="#94A3B8" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+  </defs>
+
+  <style>
+    text { font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif; }
+    .arr { stroke: #94A3B8; stroke-width: 1; fill: none; }
+    .th { font-size: 14px; font-weight: 600; fill: #0F172A; }
+    .ts { font-size: 12px; fill: #475569; }
+    .code { font-family: 'SFMono-Regular', Menlo, Consolas, monospace; font-size: 11px; fill: #334155; }
+    .phase { font-size: 12px; font-weight: 600; fill: #64748B; letter-spacing: 0.2px; }
+    .badge { font-size: 11px; fill: #64748B; }
+    .blue   { fill: #EFF6FF; stroke: #3B82F6; }
+    .purple { fill: #F5F3FF; stroke: #8B5CF6; }
+    .teal   { fill: #F0FDFA; stroke: #14B8A6; }
+    .coral  { fill: #FFF1F2; stroke: #F43F5E; }
+    .amber  { fill: #FFFBEB; stroke: #F59E0B; }
+    .green  { fill: #F0FDF4; stroke: #22C55E; }
+    .gray   { fill: #F1F5F9; stroke: #64748B; }
+    .box    { stroke-width: 0.6; }
+    .container { fill: none; stroke: #CBD5E1; stroke-width: 0.75; }
+  </style>
+
+  <rect width="900" height="1520" fill="#FFFFFF"/>
+
+  <!-- Query -->
+  <rect class="gray box" x="330" y="20" width="240" height="32" rx="16"/>
+  <text x="450" y="41" text-anchor="middle" style="font-size:13px;font-weight:600;letter-spacing:0.5px;fill:#334155">USER QUERY (Q)</text>
+  <path class="arr" d="M450 52 V76 H250 V140" marker-end="url(#arr5)"/>
+  <path class="arr" d="M450 76 H650 V140" marker-end="url(#arr5)"/>
+
+  <!-- Phase 1: Hybrid retrieval & fusion -->
+  <rect class="container" x="20" y="100" width="860" height="222" rx="16"/>
+  <text class="phase" x="38" y="124">PHASE 1 · HYBRID RETRIEVAL &amp; FUSION</text>
+  <text class="badge" x="862" y="124" text-anchor="end">~15–25 ms</text>
+
+  <rect class="blue box" x="40" y="140" width="340" height="48" rx="10"/>
+  <text class="th" x="210" y="159" text-anchor="middle">Dense Vector Search</text>
+  <text class="ts" x="210" y="176" text-anchor="middle">BGE / Qdrant HNSW · Top 15 semantic chunks</text>
+
+  <rect class="blue box" x="520" y="140" width="340" height="48" rx="10"/>
+  <text class="th" x="690" y="159" text-anchor="middle">Sparse BM25 Search</text>
+  <text class="ts" x="690" y="176" text-anchor="middle">Inverted index match · Top 15 exact keyword chunks</text>
+
+  <path class="arr" d="M250 188 V206 H450"/>
+  <path class="arr" d="M650 188 V206 H450 V216" marker-end="url(#arr5)"/>
+
+  <rect class="blue box" x="220" y="216" width="460" height="44" rx="10"/>
+  <text class="th" x="450" y="235" text-anchor="middle">Reciprocal Rank Fusion (RRF)</text>
+  <text class="code" x="450" y="252" text-anchor="middle">Score = 1/(60 + Rank_dense) + 1/(60 + Rank_bm25)</text>
+
+  <path class="arr" d="M450 260 V278" marker-end="url(#arr5)"/>
+
+  <rect class="blue box" x="300" y="278" width="300" height="28" rx="10"/>
+  <text x="450" y="296" text-anchor="middle" style="font-size:12px;font-weight:600;fill:#0F172A">Top N = 15 Re-Ranked Chunks</text>
+
+  <path class="arr" d="M450 322 V350" marker-end="url(#arr5)"/>
+
+  <!-- Phase 2: Diversity partitioning & balanced allocation -->
+  <rect class="container" x="20" y="350" width="860" height="332" rx="16"/>
+  <text class="phase" x="38" y="374">PHASE 2 · DIVERSITY PARTITIONING &amp; BALANCED ALLOCATION</text>
+  <text class="badge" x="862" y="374" text-anchor="end">&lt; 2 ms on CPU</text>
+
+  <rect class="purple box" x="150" y="390" width="600" height="46" rx="10"/>
+  <text class="th" x="450" y="409" text-anchor="middle">Dynamic Silhouette Evaluator (k ∈ {2, 3})</text>
+  <text class="ts" x="450" y="426" text-anchor="middle" style="font-size:11px">Evaluates cluster density · Automatically guards against retriever noise (k ≥ 4 capped)</text>
+
+  <path class="arr" d="M450 436 V452"/>
+  <path class="arr" d="M170 452 H730"/>
+  <path class="arr" d="M170 452 V466" marker-end="url(#arr5)"/>
+  <path class="arr" d="M450 452 V466" marker-end="url(#arr5)"/>
+  <path class="arr" d="M730 452 V466" marker-end="url(#arr5)"/>
+
+  <rect class="purple box" x="40" y="466" width="260" height="46" rx="10"/>
+  <text class="th" x="170" y="485" text-anchor="middle" style="font-size:13px">Cluster 1: Topic A</text>
+  <text class="ts" x="170" y="502" text-anchor="middle">[A0, A1, A2, A3, A4]</text>
+
+  <rect class="purple box" x="320" y="466" width="260" height="46" rx="10"/>
+  <text class="th" x="450" y="485" text-anchor="middle" style="font-size:13px">Cluster 2: Topic B</text>
+  <text class="ts" x="450" y="502" text-anchor="middle">[B0, B1, B2, B3, B4]</text>
+
+  <rect class="purple box" x="600" y="466" width="260" height="46" rx="10" stroke-dasharray="3 3"/>
+  <text class="th" x="730" y="485" text-anchor="middle" style="font-size:13px">Cluster 3: Topic C (if k = 3)</text>
+  <text class="ts" x="730" y="502" text-anchor="middle">[C0, C1, C2, C3, C4]</text>
+
+  <path class="arr" d="M170 512 V528"/>
+  <path class="arr" d="M730 512 V528"/>
+  <path class="arr" d="M450 512 V528"/>
+  <path class="arr" d="M170 528 H730"/>
+  <path class="arr" d="M450 528 V546" marker-end="url(#arr5)"/>
+
+  <rect class="purple box" x="150" y="546" width="600" height="50" rx="10"/>
+  <text class="th" x="450" y="566" text-anchor="middle" style="font-size:13px">Balanced Modulo Round-Robin Allocation</text>
+  <text class="code" x="450" y="584" text-anchor="middle" style="font-size:10.5px">Subset_i = [ A[i], B[(m - 1 - i)], C[(i + 2) % m] ]  (Rank-sum invariant)</text>
+
+  <path class="arr" d="M450 596 V614" marker-end="url(#arr5)"/>
+
+  <rect class="purple box" x="38" y="614" width="152" height="52" rx="10"/>
+  <text class="th" x="114" y="632" text-anchor="middle" style="font-size:12px">Subset δ1</text>
+  <text class="code" x="114" y="649" text-anchor="middle">[A0, B4, C2]</text>
+  <text class="ts" x="114" y="661" text-anchor="middle" style="font-size:10px;font-weight:600">Rank Balanced</text>
+
+  <rect class="purple box" x="206" y="614" width="152" height="52" rx="10"/>
+  <text class="th" x="282" y="632" text-anchor="middle" style="font-size:12px">Subset δ2</text>
+  <text class="code" x="282" y="649" text-anchor="middle">[A1, B3, C3]</text>
+  <text class="ts" x="282" y="661" text-anchor="middle" style="font-size:10px;font-weight:600">Rank Balanced</text>
+
+  <rect class="purple box" x="374" y="614" width="152" height="52" rx="10"/>
+  <text class="th" x="450" y="632" text-anchor="middle" style="font-size:12px">Subset δ3</text>
+  <text class="code" x="450" y="649" text-anchor="middle">[A2, B2, C4]</text>
+  <text class="ts" x="450" y="661" text-anchor="middle" style="font-size:10px;font-weight:600">Rank Balanced</text>
+
+  <rect class="purple box" x="542" y="614" width="152" height="52" rx="10"/>
+  <text class="th" x="618" y="632" text-anchor="middle" style="font-size:12px">Subset δ4</text>
+  <text class="code" x="618" y="649" text-anchor="middle">[A3, B1, C0]</text>
+  <text class="ts" x="618" y="661" text-anchor="middle" style="font-size:10px;font-weight:600">Rank Balanced</text>
+
+  <rect class="purple box" x="710" y="614" width="152" height="52" rx="10"/>
+  <text class="th" x="786" y="632" text-anchor="middle" style="font-size:12px">Subset δ5</text>
+  <text class="code" x="786" y="649" text-anchor="middle">[A4, B0, C1]</text>
+  <text class="ts" x="786" y="661" text-anchor="middle" style="font-size:10px;font-weight:600">Rank Balanced</text>
+
+  <path class="arr" d="M450 682 V710" marker-end="url(#arr5)"/>
+
+  <!-- Phase 3: Parallel drafting -->
+  <rect class="container" x="20" y="710" width="860" height="194" rx="16"/>
+  <text class="phase" x="38" y="734">PHASE 3 · PARALLEL DRAFTING</text>
+  <text class="badge" x="862" y="734" text-anchor="end">~250–350 ms (AsyncIO / vLLM)</text>
+
+  <rect class="teal box" x="230" y="748" width="440" height="46" rx="10"/>
+  <text class="th" x="450" y="767" text-anchor="middle">Specialist Drafter: 3B model (Llama-3.2 / Qwen)</text>
+  <text class="ts" x="450" y="784" text-anchor="middle">Prompt Rule: Generate Rationale (β) FIRST, then Final Answer (α)</text>
+
+  <path class="arr" d="M450 794 V808"/>
+  <path class="arr" d="M114 808 H786"/>
+  <path class="arr" d="M114 808 V822" marker-end="url(#arr5)"/>
+  <path class="arr" d="M282 808 V822" marker-end="url(#arr5)"/>
+  <path class="arr" d="M450 808 V822" marker-end="url(#arr5)"/>
+  <path class="arr" d="M618 808 V822" marker-end="url(#arr5)"/>
+  <path class="arr" d="M786 808 V822" marker-end="url(#arr5)"/>
+
+  <rect class="teal box" x="38" y="822" width="152" height="66" rx="10"/>
+  <text class="th" x="114" y="840" text-anchor="middle" style="font-size:12px">Draft 1</text>
+  <text class="code" x="114" y="857" text-anchor="middle">(α1, β1)</text>
+  <text class="ts" x="114" y="872" text-anchor="middle" style="font-size:10px">ρ_Draft = 0.71</text>
+  <text class="ts" x="114" y="884" text-anchor="middle" style="font-size:10px;font-weight:600">Film Perspective</text>
+
+  <rect class="teal box" x="206" y="822" width="152" height="66" rx="10"/>
+  <text class="th" x="282" y="840" text-anchor="middle" style="font-size:12px">Draft 2</text>
+  <text class="code" x="282" y="857" text-anchor="middle">(α2, β2)</text>
+  <text class="ts" x="282" y="872" text-anchor="middle" style="font-size:10px">ρ_Draft = 0.68</text>
+  <text class="ts" x="282" y="884" text-anchor="middle" style="font-size:10px;font-weight:600">Cast/Award Detail</text>
+
+  <rect class="teal box" x="374" y="822" width="152" height="66" rx="10"/>
+  <text class="th" x="450" y="840" text-anchor="middle" style="font-size:12px">Draft 3</text>
+  <text class="code" x="450" y="857" text-anchor="middle">(α3, β3)</text>
+  <text class="ts" x="450" y="872" text-anchor="middle" style="font-size:10px">ρ_Draft = 0.65</text>
+  <text class="ts" x="450" y="884" text-anchor="middle" style="font-size:10px;font-weight:600">Stage Perspective</text>
+
+  <rect class="teal box" x="542" y="822" width="152" height="66" rx="10"/>
+  <text class="th" x="618" y="840" text-anchor="middle" style="font-size:12px">Draft 4</text>
+  <text class="code" x="618" y="857" text-anchor="middle">(α4, β4)</text>
+  <text class="ts" x="618" y="872" text-anchor="middle" style="font-size:10px">ρ_Draft = 0.60</text>
+  <text class="ts" x="618" y="884" text-anchor="middle" style="font-size:10px;font-weight:600">Tour Details</text>
+
+  <rect class="teal box" x="710" y="822" width="152" height="66" rx="10"/>
+  <text class="th" x="786" y="840" text-anchor="middle" style="font-size:12px">Draft 5</text>
+  <text class="code" x="786" y="857" text-anchor="middle">(α5, β5)</text>
+  <text class="ts" x="786" y="872" text-anchor="middle" style="font-size:10px">ρ_Draft = 0.62</text>
+  <text class="ts" x="786" y="884" text-anchor="middle" style="font-size:10px;font-weight:600">Music Soundtrack</text>
+
+  <path class="arr" d="M450 904 V932" marker-end="url(#arr5)"/>
+
+  <!-- Phase 4: Verification & scoring -->
+  <rect class="container" x="20" y="932" width="860" height="270" rx="16"/>
+  <text class="phase" x="38" y="956">PHASE 4 · VERIFICATION &amp; SCORING</text>
+  <text class="badge" x="862" y="956" text-anchor="end">~150–200 ms</text>
+
+  <rect class="amber box" x="120" y="970" width="660" height="50" rx="10"/>
+  <text class="th" x="450" y="990" text-anchor="middle">Generalist Verifier: 70B / GPT-4o</text>
+  <text class="ts" x="450" y="1008" text-anchor="middle" style="font-size:11px">Raw chunks NOT read (95% token savings!) · Input: Query Q + Candidate (α_j, β_j)</text>
+
+  <path class="arr" d="M450 1020 V1036"/>
+  <path class="arr" d="M230 1036 H670"/>
+  <path class="arr" d="M230 1036 V1050" marker-end="url(#arr5)"/>
+  <path class="arr" d="M670 1036 V1050" marker-end="url(#arr5)"/>
+
+  <rect class="coral box" x="40" y="1050" width="380" height="64" rx="10"/>
+  <text class="th" x="230" y="1070" text-anchor="middle">Self-Consistency Score</text>
+  <text class="code" x="230" y="1088" text-anchor="middle">P(α, β | Q)</text>
+  <text class="ts" x="230" y="1104" text-anchor="middle" style="font-size:10.5px">Log-likelihood of draft under query context</text>
+
+  <rect class="coral box" x="480" y="1050" width="380" height="64" rx="10"/>
+  <text class="th" x="670" y="1070" text-anchor="middle">Self-Reflection Score</text>
+  <text class="code" x="670" y="1088" text-anchor="middle">P("Yes" | Q, α, β, R)</text>
+  <text class="ts" x="670" y="1104" text-anchor="middle" style="font-size:10.5px">R: "Does the rationale support the answer?"</text>
+
+  <path class="arr" d="M230 1114 V1126 H450"/>
+  <path class="arr" d="M670 1114 V1126 H450"/>
+  <path class="arr" d="M450 1126 V1140" marker-end="url(#arr5)"/>
+
+  <rect class="coral box" x="170" y="1140" width="560" height="46" rx="10"/>
+  <text class="th" x="450" y="1159" text-anchor="middle">Composite Confidence Score</text>
+  <text class="code" x="450" y="1177" text-anchor="middle">Score_j = ρ_Draft,j × ρ_Self-contain,j × ρ_Self-reflect,j</text>
+
+  <path class="arr" d="M450 1202 V1230" marker-end="url(#arr5)"/>
+
+  <!-- Phase 5: Arbitration & adaptive fusion -->
+  <rect class="container" x="20" y="1230" width="860" height="276" rx="16"/>
+  <text class="phase" x="38" y="1254">PHASE 5 · ARBITRATION &amp; ADAPTIVE FUSION</text>
+  <text class="badge" x="862" y="1254" text-anchor="end">&lt; 15 ms (or ~120 ms if synthesis)</text>
+
+  <rect class="coral box" x="170" y="1266" width="560" height="48" rx="10"/>
+  <text class="th" x="450" y="1285" text-anchor="middle">Adaptive Fusion Gating Mechanism</text>
+  <text class="code" x="450" y="1303" text-anchor="middle" style="font-size:10.5px">Is Score Margin (ρ_top1 - ρ_top2) &lt; 0.15 AND ρ_top2 &gt; 0.65?</text>
+
+  <path class="arr" d="M450 1314 V1330 H230 V1344" marker-end="url(#arr5)"/>
+  <path class="arr" d="M450 1330 H670 V1344" marker-end="url(#arr5)"/>
+
+  <rect class="green box" x="40" y="1344" width="380" height="62" rx="10"/>
+  <text x="230" y="1363" text-anchor="middle" style="font-size:12px;font-weight:700;fill:#166534">CASE A: DECISIVE WINNER (NO)</text>
+  <text class="code" x="230" y="1381" text-anchor="middle">Winner = argmax_j (Score_j)</text>
+  <text class="ts" x="230" y="1397" text-anchor="middle" style="font-size:10.5px">Zero extra tokens · Returns Top-1 Draft (α1)</text>
+
+  <rect class="blue box" x="480" y="1344" width="380" height="62" rx="10"/>
+  <text x="670" y="1363" text-anchor="middle" style="font-size:12px;font-weight:700;fill:#1E40AF">CASE B: CLOSE MARGIN / MULTI-FACET (YES)</text>
+  <text class="code" x="670" y="1381" text-anchor="middle">Verifier.synthesize(α_top1, α_top2)</text>
+  <text class="ts" x="670" y="1397" text-anchor="middle" style="font-size:10.5px">Merges complementary multi-entity insights</text>
+
+  <path class="arr" d="M230 1406 V1420 H450"/>
+  <path class="arr" d="M670 1406 V1420 H450"/>
+  <path class="arr" d="M450 1420 V1436" marker-end="url(#arr5)"/>
+
+  <rect class="green box" x="160" y="1436" width="580" height="54" rx="10"/>
+  <text x="450" y="1458" text-anchor="middle" style="font-size:15px;font-weight:700;letter-spacing:0.5px;fill:#166534">FINAL RESPONSE TO USER</text>
+  <text class="ts" x="450" y="1476" text-anchor="middle" style="font-size:11px">+ Telemetry Metadata: End-to-End Latency (~470 ms), Token Savings (95%), Winning Draft ID</text>
+</svg>
